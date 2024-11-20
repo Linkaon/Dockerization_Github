@@ -12,6 +12,12 @@ jobs:
   test:
     runs-on: ubuntu-latest  
 
+    services:
+        mongodb:
+          image: mongo:latest
+          ports:
+            - 27017:27017      
+          options: --health-cmd="curl --silent --show-error --fail localhost:27017 || exit 1" 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
